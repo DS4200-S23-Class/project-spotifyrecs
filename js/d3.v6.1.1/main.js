@@ -207,7 +207,7 @@ function render(x_attribute, y_attribute) {
         
         // plot bar 
         const X_SCALE_BAR = d3.scaleBand()
-                                .domain(['US', 'CA', 'MX', 'CR', 'AR', 'BO', 'CL', 'PE', 'BR', 'PY'])
+                                .domain(['AD', 'AE', 'AL', 'AR', 'AT', 'AU', 'BA', 'BE', 'BG', 'BH', 'BO', 'BR', 'BY', 'CA', 'CH', 'CL', 'CO', 'CR', 'CY', 'CZ', 'DE', 'DK', 'DO', 'DZ', 'EC', 'EE', 'EG', 'ES', 'FI', 'FR', 'GB', 'GR', 'GT', 'HK', 'HN', 'HR', 'HU', 'ID', 'IE', 'IL', 'IN', 'IS', 'IT', 'JO', 'JP', 'KW', 'KZ', 'LB', 'LI', 'LT', 'LU', 'LV', 'MA', 'MC', 'MD', 'ME', 'MK', 'MT', 'MX', 'MY', 'NI', 'NL', 'NO', 'NZ', 'OM', 'PA', 'PE', 'PH', 'PL', 'PS', 'PT', 'PY', 'QA', 'RO', 'RS', 'RU', 'SA', 'SE', 'SG', 'SI', 'SK', 'SV', 'TH', 'TN', 'TR', 'TW', 'UA', 'US', 'UY', 'VN', 'XK', 'ZA'])
                                 .range([0, BAR_WIDTH]);
 
         const Y_SCALE_BAR = d3.scaleLinear()
@@ -244,11 +244,32 @@ function render(x_attribute, y_attribute) {
             .style("text-anchor", "middle")
             .text("Number of Songs");
 
+        /*
+        let transposedData = d3.transpose([data]);
+        let k = Object.keys(data[0]);
+
+          transposedData.forEach(function(column, index) {
+            // Do something with the values in this column
+            console.log("Column " + index + ": " + column);
+
+        });
+        */
+
+
+            /*
+        data.forEach( function(d) {
+            // loop through available markets 
+            for (var i = 0; i < )
+            if(d['available_markets'] )
+            console.log(d['available_markets'])
+
+        })
+*/
+
+
         const COUNTER = d3.scaleOrdinal()
-            .domain(['US', 'CA', 'MX', 'CR', 'AR', 'BO', 'CL', 'PE', 'BR', 'PY'])
-            .range([2000, 1949, 1920, 1879, 1874, 1873, 1873, 1873, 1873, 1873]);
-
-
+            .domain(['AD', 'AE', 'AL', 'AR', 'AT', 'AU', 'BA', 'BE', 'BG', 'BH', 'BO', 'BR', 'BY', 'CA', 'CH', 'CL', 'CO', 'CR', 'CY', 'CZ', 'DE', 'DK', 'DO', 'DZ', 'EC', 'EE', 'EG', 'ES', 'FI', 'FR', 'GB', 'GR', 'GT', 'HK', 'HN', 'HR', 'HU', 'ID', 'IE', 'IL', 'IN', 'IS', 'IT', 'JO', 'JP', 'KW', 'KZ', 'LB', 'LI', 'LT', 'LU', 'LV', 'MA', 'MC', 'MD', 'ME', 'MK', 'MT', 'MX', 'MY', 'NI', 'NL', 'NO', 'NZ', 'OM', 'PA', 'PE', 'PH', 'PL', 'PS', 'PT', 'PY', 'QA', 'RO', 'RS', 'RU', 'SA', 'SE', 'SG', 'SI', 'SK', 'SV', 'TH', 'TN', 'TR', 'TW', 'UA', 'US', 'UY', 'VN', 'XK', 'ZA'])
+            .range([1675, 1827, 1839, 1874, 1852, 1845, 1847, 1857, 1860, 1828, 1873, 1873, 1710, 1949, 1853, 1873, 1869, 1879, 1861, 1865, 1848, 1859, 1867, 1843, 1872, 1863, 1829, 1865, 1862, 1860, 1858, 1863, 1871, 1858, 1871, 1849, 1867, 1857, 1854, 1863, 1832, 1856, 1858, 1652, 1805, 1834, 1675, 1828, 1655, 1863, 1859, 1863, 1839, 1676, 1676, 1842, 1847, 1863, 1920, 1854, 1871, 1858, 1861, 1847, 1828, 1869, 1873, 1859, 1863, 1599, 1866, 1873, 1828, 1861, 1811, 1857, 1828, 1849, 1862, 1864, 1865, 1872, 1852, 1842, 1866, 1857, 1861, 2000, 1862, 1855, 1811, 1868]);
         
         for (var i = 0; i < 10; i++) {
             BAR_FRAME.selectAll("bars")
@@ -274,7 +295,6 @@ function render(x_attribute, y_attribute) {
             d3.select(this)
         TOOLTIP.style("opacity", 1);
 
-
         };
 
         function handleMousemove(event, d) {
@@ -283,8 +303,16 @@ function render(x_attribute, y_attribute) {
         TOOLTIP.html("Track Name: " + d.track_name + "<br>Album: " + d.album_name + "<br>Release Year: " + d.album_release_year)
                 .style("left", (event.pageX + 10) + "px") 
                 .style("top", (event.pageY - 50) + "px"); 
-        
 
+        for (var i = 0; i < COUNTER.domain().length; i++) {
+            mkt = COUNTER.domain()[i];
+            if(d[mkt] == 1) {
+                d3.selectAll('#' + mkt).attr("class", "active")
+            }
+        }
+
+        
+        /*
             if(d.US == 1) {
                 d3.selectAll('#US').attr("class", "active")
             } 
@@ -315,6 +343,7 @@ function render(x_attribute, y_attribute) {
             if(d.PY == 1) {
                 d3.selectAll('#PY').attr("class", "active")
             }
+            */
         
         };
 
@@ -322,7 +351,6 @@ function render(x_attribute, y_attribute) {
         function handleMouseleave(event, d) {
             d3.select(this)
         TOOLTIP.style("opacity", 0); 
-
 
             if(d.US == 1) {
                 d3.selectAll('#US').attr("class", "inactive")
