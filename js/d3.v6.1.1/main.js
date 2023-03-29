@@ -73,7 +73,7 @@ function render(x_attribute, y_attribute) {
         const YEAR_SCALE = d3.scalePow()
                                 .exponent(2)
                                 .domain([MIN_YEAR, MAX_YEAR])
-                                .range([1, .1]);
+                                .range([1, .4]);
 
         
 
