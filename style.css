@@ -54,4 +54,9 @@ h1 {
   fill: red;
 }
 
+.visualizations {
+    display: flex;
+    justify-content: space-around;
+  }
+
 

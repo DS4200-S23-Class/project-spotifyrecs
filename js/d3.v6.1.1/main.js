@@ -217,8 +217,7 @@ function render(x_attribute, y_attribute) {
                 .attr("x", FRAME_WIDTH/2)
                 .attr("y", 20)
                 .attr("text-anchor", "middle")
-                .style("font-size", "20px")
-                .text("Count of Songs in Top 10 Available Markets");
+                .style("font-size", "20px");
 
 
         // add x-axis to vis
