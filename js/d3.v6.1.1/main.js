@@ -1,5 +1,5 @@
-let FRAME_HEIGHT = 700;
-let FRAME_WIDTH = 700;
+let FRAME_HEIGHT = 600;
+let FRAME_WIDTH = 600;
 let MARGINS = {left: 50, right: 50, top: 50, bottom: 50};
 
 let SCATTER_FRAME = d3.select('.scatter')
@@ -110,7 +110,7 @@ function render(x_attribute, y_attribute) {
                 .data(data)
                 .enter()
                 .append("circle")
-                    .attr("cx", (d) => {return (X_SCALE(Math.abs(parseFloat(d[x_attribute]))) + 2 * MARGINS.left)})
+                    .attr("cx", (d) => {return (X_SCALE(Math.abs(parseFloat(d[x_attribute]))) + 1.5 * MARGINS.left)})
                     .attr("cy", (d) => {return ((Y_SCALE(Math.abs(parseFloat(d[y_attribute]))) + MARGINS.top))})
                     .attr("r", 2)
                     .attr("id", (d) => {return (d.track_name)})
@@ -123,30 +123,43 @@ function render(x_attribute, y_attribute) {
     
 
         // add the x axis title
+        // SCATTER_FRAME.append("text")
+        //     .attr("class", "x-label")
+        //     .attr("x", SCATTER_WIDTH/2 )
+        //     .attr("y", SCATTER_HEIGHT + MARGINS.top + MARGINS.bottom - 5)
+        //     .text(x_attribute.charAt(0).toUpperCase() + x_attribute.slice(1));
+
         SCATTER_FRAME.append("text")
-            .attr("class", "x-label")
-            .attr("x", SCATTER_WIDTH/2 + MARGINS.left)
-            .attr("y", SCATTER_HEIGHT + MARGINS.top + MARGINS.bottom - 5)
+            .attr("x", FRAME_WIDTH/2)
+            .attr("y", FRAME_HEIGHT - 15)
+            .style("text-anchor", "middle")
             .text(x_attribute.charAt(0).toUpperCase() + x_attribute.slice(1));
         
             // add the y axis title
+        // SCATTER_FRAME.append("text")
+        //     .attr("class", "y-label")
+        //     .attr("x", 50)
+        //     .attr("y", -15)
+        //     .style("transform", "rotate(-90deg)")
+        //     .style("transform-origin", "32% 25%")
+        //     .text(y_attribute.charAt(0).toUpperCase() + y_attribute.slice(1));
+
         SCATTER_FRAME.append("text")
-            .attr("class", "y-label")
-            .attr("x", 0)
-            .attr("y", 0)
-            .style("transform", "rotate(-90deg)")
-            .style("transform-origin", "32% 25%")
+            .attr("transform", "rotate(-90)")
+            .attr("x", -(FRAME_HEIGHT/2))
+            .attr("y", 25)
+            .style("text-anchor", "middle")
             .text(y_attribute.charAt(0).toUpperCase() + y_attribute.slice(1));
-        
+
         // plot the bottom and side axis
             SCATTER_FRAME.append("g")
-                .attr("transform", "translate(" + (2 * MARGINS.left) + "," + 
+                .attr("transform", "translate(" + (1.5 * MARGINS.left) + "," + 
                 (SCATTER_HEIGHT + MARGINS.top) + ")")
                 .call(d3.axisBottom(X_SCALE).ticks(10))
                     .attr("font-size", "12px");
 
             SCATTER_FRAME.append("g")
-                .attr("transform", "translate("  + (MARGINS.left + 50) + "," + 
+                .attr("transform", "translate("  + (MARGINS.left + 25) + "," + 
                 (MARGINS.top) +  ")")
                 .call(d3.axisLeft(Y_SCALE).ticks(10))
                     .attr("font-size", "12px");
@@ -207,7 +220,8 @@ function render(x_attribute, y_attribute) {
         
         // plot bar 
         const X_SCALE_BAR = d3.scaleBand()
-                                .domain(['AD', 'AE', 'AL', 'AR', 'AT', 'AU', 'BA', 'BE', 'BG', 'BH', 'BO', 'BR', 'BY', 'CA', 'CH', 'CL', 'CO', 'CR', 'CY', 'CZ', 'DE', 'DK', 'DO', 'DZ', 'EC', 'EE', 'EG', 'ES', 'FI', 'FR', 'GB', 'GR', 'GT', 'HK', 'HN', 'HR', 'HU', 'ID', 'IE', 'IL', 'IN', 'IS', 'IT', 'JO', 'JP', 'KW', 'KZ', 'LB', 'LI', 'LT', 'LU', 'LV', 'MA', 'MC', 'MD', 'ME', 'MK', 'MT', 'MX', 'MY', 'NI', 'NL', 'NO', 'NZ', 'OM', 'PA', 'PE', 'PH', 'PL', 'PS', 'PT', 'PY', 'QA', 'RO', 'RS', 'RU', 'SA', 'SE', 'SG', 'SI', 'SK', 'SV', 'TH', 'TN', 'TR', 'TW', 'UA', 'US', 'UY', 'VN', 'XK', 'ZA'])
+                                .domain(['US', 'CA', 'MX', 'CR', 'AR', 'BO', 'BR', 'CL', 'PE', 'PY', 'EC', 'SV', 'GT', 'HN', 'NI', 'CO', 'PA', 
+                                'ZA', 'DO', 'HU', 'PT', 'TR', 'CZ', 'ES', 'SK', 'SI', 'EE', 'GR', 'IL', 'LT'])
                                 .range([0, BAR_WIDTH]);
 
         const Y_SCALE_BAR = d3.scaleLinear()
@@ -268,17 +282,19 @@ function render(x_attribute, y_attribute) {
 
 
         const COUNTER = d3.scaleOrdinal()
-            .domain(['AD', 'AE', 'AL', 'AR', 'AT', 'AU', 'BA', 'BE', 'BG', 'BH', 'BO', 'BR', 'BY', 'CA', 'CH', 'CL', 'CO', 'CR', 'CY', 'CZ', 'DE', 'DK', 'DO', 'DZ', 'EC', 'EE', 'EG', 'ES', 'FI', 'FR', 'GB', 'GR', 'GT', 'HK', 'HN', 'HR', 'HU', 'ID', 'IE', 'IL', 'IN', 'IS', 'IT', 'JO', 'JP', 'KW', 'KZ', 'LB', 'LI', 'LT', 'LU', 'LV', 'MA', 'MC', 'MD', 'ME', 'MK', 'MT', 'MX', 'MY', 'NI', 'NL', 'NO', 'NZ', 'OM', 'PA', 'PE', 'PH', 'PL', 'PS', 'PT', 'PY', 'QA', 'RO', 'RS', 'RU', 'SA', 'SE', 'SG', 'SI', 'SK', 'SV', 'TH', 'TN', 'TR', 'TW', 'UA', 'US', 'UY', 'VN', 'XK', 'ZA'])
-            .range([1675, 1827, 1839, 1874, 1852, 1845, 1847, 1857, 1860, 1828, 1873, 1873, 1710, 1949, 1853, 1873, 1869, 1879, 1861, 1865, 1848, 1859, 1867, 1843, 1872, 1863, 1829, 1865, 1862, 1860, 1858, 1863, 1871, 1858, 1871, 1849, 1867, 1857, 1854, 1863, 1832, 1856, 1858, 1652, 1805, 1834, 1675, 1828, 1655, 1863, 1859, 1863, 1839, 1676, 1676, 1842, 1847, 1863, 1920, 1854, 1871, 1858, 1861, 1847, 1828, 1869, 1873, 1859, 1863, 1599, 1866, 1873, 1828, 1861, 1811, 1857, 1828, 1849, 1862, 1864, 1865, 1872, 1852, 1842, 1866, 1857, 1861, 2000, 1862, 1855, 1811, 1868]);
+            .domain(['US', 'CA', 'MX', 'CR', 'AR', 'BO', 'BR', 'CL', 'PE', 'PY', 'EC', 'SV', 'GT', 'HN', 'NI', 'CO', 'PA', 
+                    'ZA', 'DO', 'HU', 'PT', 'TR', 'CZ', 'ES', 'SK', 'SI', 'EE', 'GR', 'IL', 'LT'])
+            .range([2000, 1949, 1920, 1879, 1874, 1873, 1873, 1873, 1873, 1873, 1872, 1872, 1871, 1871, 1871, 1869, 1869, 1868, 
+                    1867, 1867, 1866, 1866, 1865, 1865, 1865, 1864, 1863, 1863, 1863, 1863]);
         
-        for (var i = 0; i < 10; i++) {
+        for (let i = 0; i < COUNTER.domain().length; i++) {
             BAR_FRAME.selectAll("bars")
                     .data(data)
                     .enter()
                     .append("rect")  
-                    .attr("x", X_SCALE_BAR(COUNTER.domain()[i]) + MARGINS.left + 20) 
+                    .attr("x", X_SCALE_BAR(COUNTER.domain()[i]) + MARGINS.left + 7.5) 
                     .attr("y", Y_SCALE_BAR(COUNTER.range()[i]) + MARGINS.top) 
-                    .attr("width", 20)
+                    .attr("width", 5)
                     .attr("height", BAR_HEIGHT - Y_SCALE_BAR(COUNTER.range()[i])) 
                     .attr("id", COUNTER.domain()[i])
                     .attr("class", "inactive");
@@ -294,22 +310,23 @@ function render(x_attribute, y_attribute) {
         function handleMouseover(event, d) {
             d3.select(this)
         TOOLTIP.style("opacity", 1);
+         // position the tooltip and fill in information 
+         TOOLTIP.html("Track Name: " + d.track_name + "<br>Album: " + d.album_name + "<br>Release Year: " + d.album_release_year)
+         .style("left", (event.offsetX + 10) + "px") 
+         .style("top", (event.offsetY - 50) + "px"); 
 
-        };
-
-        function handleMousemove(event, d) {
-
-        // position the tooltip and fill in information 
-        TOOLTIP.html("Track Name: " + d.track_name + "<br>Album: " + d.album_name + "<br>Release Year: " + d.album_release_year)
-                .style("left", (event.pageX + 10) + "px") 
-                .style("top", (event.pageY - 50) + "px"); 
-
-        for (var i = 0; i < COUNTER.domain().length; i++) {
+        for (let i = 0; i < COUNTER.domain().length; i++) {
             mkt = COUNTER.domain()[i];
             if(d[mkt] == 1) {
                 d3.selectAll('#' + mkt).attr("class", "active")
             }
         }
+
+        };
+
+        function handleMousemove(event, d) {
+
+       
 
         
         /*
@@ -351,37 +368,14 @@ function render(x_attribute, y_attribute) {
         function handleMouseleave(event, d) {
             d3.select(this)
         TOOLTIP.style("opacity", 0); 
-
-            if(d.US == 1) {
-                d3.selectAll('#US').attr("class", "inactive")
-            } 
-            if(d.CA == 1) {
-                d3.selectAll('#CA').attr("class", "inactive")
-            }
-            if(d.MX == 1) {
-                d3.selectAll('#MX').attr("class", "inactive")
-            }
-            if(d.CR == 1) {
-                d3.selectAll('#CR').attr("class", "inactive")
-            }
-            if(d.AR == 1) {
-                d3.selectAll('#AR').attr("class", "inactive")
-            }
-            if(d.BO == 1) {
-                d3.selectAll('#BO').attr("class", "inactive")
-            }
-            if(d.CL == 1) {
-                d3.selectAll('#CL').attr("class", "inactive")
-            }
-            if(d.PE == 1) {
-                d3.selectAll('#PE').attr("class", "inactive")
-            }
-            if(d.BR == 1) {
-                d3.selectAll('#BR').attr("class", "inactive")
-            }
-            if(d.PY == 1) {
-                d3.selectAll('#PY').attr("class", "inactive")
-            }
+        d3.selectAll(".active").attr("class", "inactive")
+        // for (let i = 0; i < COUNTER.domain().length; i++) {
+        //     mkt = COUNTER.domain()[i];
+        //     if(d[mkt] == 1) {
+        //         d3.selectAll('#' + mkt).attr("class", "inactive")
+        //     }
+        // }
+            
         };
         
 

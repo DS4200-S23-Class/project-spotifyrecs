@@ -17,13 +17,13 @@ h1 {
 }
 /* create class for tooltip attributes*/
 #tooltip {
-    /* position: absolute; */
+    position: absolute;
     background-color: white;
     border:  solid;
     border-width: 2px;
     border-radius: 5px;
     padding: 5px;
-  }
+   } 
 
   .scatter {
     position: relative;
@@ -32,9 +32,11 @@ h1 {
 #legend {
   position: absolute;
   display: flex;
+  /* justify-content: space-evenly; */
+  text-align: center;
   
-
 }
+
 
 
   #color-key {
@@ -43,20 +45,44 @@ h1 {
     height: 10px;
     width: 60%;
     /* top: 75px; */
-    /* left: 30%;  */
+    /* left: 50px;  */
   } 
 
 .inactive {
     fill: forestgreen;
 }
 
+#inactive-markets {
+  color: green;
+}
+
 .active {
   fill: red;
 }
 
+#active-markets {
+  color: red;
+}
+
 .visualizations {
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-evenly; */
+    /* gap: 20px; */
+    
   }
 
+.click-point {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+  
+ul {
+  font-size: 10px
+}
 
+#legend2 {
+  left: 50%;
+  position: absolute;
+  text-align: center;
+}

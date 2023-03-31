@@ -50,42 +50,90 @@
         
         <div class="visualizations">
             <div class="scatter">
+                
                 <h4 id="vis1-title">Spotify Song Attributes</h4>
                 <div id="legend">
                     <p id="color-key-min">Min Album Release Date (1945)</p>
                     <img src="images/Greens.png" alt="color_bar" id="color-key"><p></p>
                     <p id="color-key-max">Max Album Release Date (2020)</p>
                 </div>
+                
+                
             </div>
             <div>
-                <h4 id="vis1-title">Count of Songs in Top 10 Available Markets</h4>
-                <div class="bar"></div>
+                <h4 id="vis1-title">Count of Songs in Top 30 Available Markets*</h4>
+                
+                <div class="bar">
+                    <div id="legend2">
+                        <p id="inactive-markets">Available in the Marke (on hover)</p>
+                        <p id="active-markets">Not Available in the Market (on hover)</p>
+                    </div>
+                    
+                </div>
+            </div>
+            <div>
+                <h5>Country Codes</h5>
+                <ul>
+                    <li>US: United States</li>
+                    <li>CA: Canada</li>
+                    <li>MX: Mexico</li>
+                    <li>CR: Costa Rica</li>
+                    <li>AR: Argentina</li>
+                    <li>BO: Bolivia</li>
+                    <li>BR: Brazil</li>
+                    <li>CL: Chile</li>
+                    <li>PE: Peru</li>
+                    <li>PY: Paraguay</li>
+                    <li>EC: Ecuador</li>
+                    <li>SV: El Salvador</li>
+                    <li>GT: Guatemala</li>
+                    <li>HN: Honduras</li>
+                    <li>NI: Nicaragua</li>
+                    <li>CO: Colombia</li>
+                    <li>PA: Panama</li>
+                    <li>ZA: South Africa</li>
+                    <li>DO: Dominican Republic</li>
+                    <li>HU: Hungary</li>
+                    <li>PT: Portugal</li>
+                    <li>TR: Turkey</li>
+                    <li>CZ: Czech Republic</li>
+                    <li>ES: Spain</li>
+                    <li>SK: Slovakia</li>
+                    <li>SI: Slovenia</li>
+                    <li>EE: Estonia</li>
+                    <li>GR: Greece</li>
+                    <li>IL: Israel</li>
+                    <li>LT: Lithuania</li>
+                </ul>
+        
             </div>
         </div>
         
         
         
-        <p id = "click-point"></p>
-
-            <h4> Choose Axes </h4>
-
+        <div class = "click-point">
+            
+            
             <!--dropdowns for x and y coordinates-->
-            <form id ='show-pt'>
 
-              <label>Select X Axes:</label>
-              
-              <select form="show-pt" id="x">
-                <option value="Energy">Energy</option>
-                <option value="Danceability" selected>Danceability</option>
-                <option value="Instrumentalness">Instrumentalness</option>
-                <option value="Liveness">Liveness</option>
-                <option value="Loudness">Loudness</option>
-                <option value="Tempo">Tempo</option>
-                <option value="Valence">Valence</option>
-              </select>
-
+            <!-- <form id ='show-pt'> -->
+            <div>
+                
+                <label>Select X Axes:</label>
+                
+                <select form="show-pt" id="x">
+                    <option value="Energy">Energy</option>
+                    <option value="Danceability" selected>Danceability</option>
+                    <option value="Instrumentalness">Instrumentalness</option>
+                    <option value="Liveness">Liveness</option>
+                    <option value="Loudness">Loudness</option>
+                    <option value="Tempo">Tempo</option>
+                    <option value="Valence">Valence</option>
+                </select>
+            </div>
               <br>
 
+            <div>
               <label>Select Y Axes:</label>
               
               <select form="show-pt" id="y">
@@ -97,16 +145,15 @@
                 <option value="Tempo">Tempo</option>
                 <option value="Valence">Valence</option>
               </select>
-        
-            </form>
+            </div>
+            <!-- </form> -->
+            <div>
+                <!--create button-->
+                <button type="button" onClick = "changeAttributes()" id="create-pt">Create</button>
 
-            <!--create button-->
-            <button type="button" onClick = "changeAttributes()" id="create-pt">Create</button>
+            </div>
+            
     </div>
-        <br> 
-        <div class="bar"></div>
-    </div>
-
     <div>
         <h2>Acknowledgements</h2>
          
