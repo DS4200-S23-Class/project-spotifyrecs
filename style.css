@@ -49,19 +49,19 @@ h1 {
   } 
 
 .inactive {
-    fill: forestgreen;
+    fill: black;
 }
 
 #inactive-markets {
-  color: green;
+  color: black;
 }
 
 .active {
-  fill: red;
+  fill: green;
 }
 
 #active-markets {
-  color: red;
+  color: green;
 }
 
 .visualizations {

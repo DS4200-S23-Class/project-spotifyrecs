@@ -314,13 +314,24 @@ function render(x_attribute, y_attribute) {
          TOOLTIP.html("Track Name: " + d.track_name + "<br>Album: " + d.album_name + "<br>Release Year: " + d.album_release_year)
          .style("left", (event.offsetX + 10) + "px") 
          .style("top", (event.offsetY - 50) + "px"); 
+        
+         
+        d.countryCodes = ['US', 'CA', 'MX', 'CR', 'AR', 'BO', 'BR', 'CL', 'PE', 'PY', 'EC', 'SV', 'GT', 'HN', 'NI', 'CO', 'PA', 'ZA', 'DO', 'HU', 'PT', 'TR', 'CZ', 'ES', 'SK', 'SI', 'EE', 'GR', 'IL', 'LT']
+              .filter(function(cc) { return d[cc] == 1; });
+        console.log(d.countryCodes)
+        d.countryCodes.forEach(function(code) {
+            
+            d3.selectAll("#" + code + ".inactive")
+                .attr("class", "active");
+        });
+          
 
-        for (let i = 0; i < COUNTER.domain().length; i++) {
-            mkt = COUNTER.domain()[i];
-            if(d[mkt] == 1) {
-                d3.selectAll('#' + mkt).attr("class", "active")
-            }
-        }
+        // for (let i = 0; i < COUNTER.domain().length; i++) {
+        //     mkt = COUNTER.domain()[i];
+        //     if(d[mkt] == 1) {
+        //         d3.selectAll('#' + mkt).attr("class", "active")
+        //     }
+        // }
 
         };
 
