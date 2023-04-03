@@ -227,28 +227,24 @@ function render(x_attribute, y_attribute) {
         const Y_SCALE_BAR = d3.scaleLinear()
                                 .domain([0,2000])
                                 .range([BAR_HEIGHT, 0]);
-        BAR_FRAME.append("text")
-                .attr("x", FRAME_WIDTH/2)
-                .attr("y", 20)
-                .attr("text-anchor", "middle")
-                .style("font-size", "20px");
+    
 
 
         // add x-axis to vis
         BAR_FRAME.append("g")
-                .attr("transform", "translate(" + MARGINS.left+ "," + (BAR_HEIGHT + MARGINS.top) + ")")
+                .attr("transform", "translate(" + MARGINS.left+ "," + (BAR_HEIGHT + 12) + ")")
                 .call(d3.axisBottom(X_SCALE_BAR).ticks(10));
 
         BAR_FRAME.append("text")
             .attr("x", FRAME_WIDTH/2)
-            .attr("y", FRAME_HEIGHT - 15)
+            .attr("y", FRAME_HEIGHT - 50)
             .style("text-anchor", "middle")
             .text("Available Markets");
 
 
         // add y-axis to vis
         BAR_FRAME.append("g")
-                .attr("transform", "translate(" + MARGINS.left + "," + (MARGINS.top) + ")")
+                .attr("transform", "translate(" + MARGINS.left + "," + (12) + ")")
                 .call(d3.axisLeft(Y_SCALE_BAR).ticks(10));
 
         BAR_FRAME.append("text")
@@ -292,8 +288,8 @@ function render(x_attribute, y_attribute) {
                     .data(data)
                     .enter()
                     .append("rect")  
-                    .attr("x", X_SCALE_BAR(COUNTER.domain()[i]) + MARGINS.left + 7.5) 
-                    .attr("y", Y_SCALE_BAR(COUNTER.range()[i]) + MARGINS.top) 
+                    .attr("x", X_SCALE_BAR(COUNTER.domain()[i]) + MARGINS.left + 6) 
+                    .attr("y", Y_SCALE_BAR(COUNTER.range()[i]) + 12) 
                     .attr("width", 5)
                     .attr("height", BAR_HEIGHT - Y_SCALE_BAR(COUNTER.range()[i])) 
                     .attr("id", COUNTER.domain()[i])
