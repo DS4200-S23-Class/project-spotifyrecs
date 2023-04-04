@@ -29,37 +29,37 @@ function render(x_attribute, y_attribute) {
 
     // Reading from file and appending points
     d3.csv("data/Spotify_Songs_Subset2.csv").then((data) => {
-        // Create key dictionary (it is possible we will use this later) 
-        let keys = {'A' : 'blue', 'A#/Bb' : 'mediumturquiose', 
-        'B' : 'green', 'C' : 'orange', 'C#/Db' : 'coral', 
-        'D' : 'red', 'D#/Eb' : 'magenta', 'E' : 'violet', 
-        'F' : 'brown', 'F#/Gb' : 'tomato', 'G' : 'pink', 'G#/Ab' : 'mediumslateblue'};
+        // // Create key dictionary (it is possible we will use this later) 
+        // let keys = {'A' : 'blue', 'A#/Bb' : 'mediumturquiose', 
+        // 'B' : 'green', 'C' : 'orange', 'C#/Db' : 'coral', 
+        // 'D' : 'red', 'D#/Eb' : 'magenta', 'E' : 'violet', 
+        // 'F' : 'brown', 'F#/Gb' : 'tomato', 'G' : 'pink', 'G#/Ab' : 'mediumslateblue'};
 
-        // Create attribute dicitonary for future use
-        const attribute_list = ("danceability", "energy", "loudness", "speechiness", 
-                                "acousticness", "instrumentalness", "liveness", "valence", "tempo");
+        // // Create attribute dicitonary for future use
+        // const attribute_list = ("danceability", "energy", "loudness", "speechiness", 
+        //                         "acousticness", "instrumentalness", "liveness", "valence", "tempo");
             
-        let attribute_dictionary = {};
-        for(let i = 0; i < attribute_list.length; i++)  {
-            const curr_attr = attribute_list[i];
-            attribute_dictionary.curr_attr;
+        // let attribute_dictionary = {};
+        // for(let i = 0; i < attribute_list.length; i++)  {
+        //     const curr_attr = attribute_list[i];
+        //     attribute_dictionary.curr_attr;
 
-                    const max = d3.max (data, (d) => { return d[curr_attr]});
-                    const min = d3.min (data, (d) => {return d[curr_attr]});
+        //             const max = d3.max (data, (d) => { return d[curr_attr]});
+        //             const min = d3.min (data, (d) => {return d[curr_attr]});
 
-                    const scale = d3.scaleLinear()
-                                        .domain([min, max]) 
-                                        .range(0., SCATTER_WIDTH);
+        //             const scale = d3.scaleLinear()
+        //                                 .domain([min, max]) 
+        //                                 .range(0., SCATTER_WIDTH);
 
-                    attribute_dictionary.curr_attr = {
-                        max: max,
-                        min: min,
-                        scale: scale
-                    };
-                };
-                    function user_input() {
-                        attribute_dictionary.user_attribute.scale();
-                    };
+        //             attribute_dictionary.curr_attr = {
+        //                 max: max,
+        //                 min: min,
+        //                 scale: scale
+        //             };
+        //         };
+        //             function user_input() {
+        //                 attribute_dictionary.user_attribute.scale();
+        //             };
         
         
 
@@ -103,7 +103,6 @@ function render(x_attribute, y_attribute) {
                             .domain([MIN_Y, MAX_Y])
                             .range([SCATTER_HEIGHT, 0]);
 
-    
 
         // plot the scatter points
         let Points = SCATTER_FRAME.selectAll("circle")
@@ -120,29 +119,11 @@ function render(x_attribute, y_attribute) {
                     return (d3.interpolateGreens(YEAR_SCALE(d["album_release_year"])))});
                     
 
-    
-
-        // add the x axis title
-        // SCATTER_FRAME.append("text")
-        //     .attr("class", "x-label")
-        //     .attr("x", SCATTER_WIDTH/2 )
-        //     .attr("y", SCATTER_HEIGHT + MARGINS.top + MARGINS.bottom - 5)
-        //     .text(x_attribute.charAt(0).toUpperCase() + x_attribute.slice(1));
-
         SCATTER_FRAME.append("text")
             .attr("x", FRAME_WIDTH/2)
             .attr("y", FRAME_HEIGHT - 15)
             .style("text-anchor", "middle")
             .text(x_attribute.charAt(0).toUpperCase() + x_attribute.slice(1));
-        
-            // add the y axis title
-        // SCATTER_FRAME.append("text")
-        //     .attr("class", "y-label")
-        //     .attr("x", 50)
-        //     .attr("y", -15)
-        //     .style("transform", "rotate(-90deg)")
-        //     .style("transform-origin", "32% 25%")
-        //     .text(y_attribute.charAt(0).toUpperCase() + y_attribute.slice(1));
 
         SCATTER_FRAME.append("text")
             .attr("transform", "rotate(-90)")
@@ -151,73 +132,22 @@ function render(x_attribute, y_attribute) {
             .style("text-anchor", "middle")
             .text(y_attribute.charAt(0).toUpperCase() + y_attribute.slice(1));
 
+      
+
         // plot the bottom and side axis
-            SCATTER_FRAME.append("g")
-                .attr("transform", "translate(" + (1.5 * MARGINS.left) + "," + 
-                (SCATTER_HEIGHT + MARGINS.top) + ")")
-                .call(d3.axisBottom(X_SCALE).ticks(10))
-                    .attr("font-size", "12px");
+       SCATTER_FRAME.append("g")
+                                    .attr("transform", "translate(" + (1.5 * MARGINS.left) + "," + 
+                                    (SCATTER_HEIGHT + MARGINS.top) + ")")
+                                    .call(d3.axisBottom(X_SCALE).ticks(10))
+                                        .attr("font-size", "12px");
 
-            SCATTER_FRAME.append("g")
-                .attr("transform", "translate("  + (MARGINS.left + 25) + "," + 
-                (MARGINS.top) +  ")")
-                .call(d3.axisLeft(Y_SCALE).ticks(10))
-                    .attr("font-size", "12px");
-
-        // const zoom = d3.zoom()
-        // .scaleExtent([1, 10]) // Set the minimum and maximum zoom levels
-        // .on("zoom", zoomed);
-
-        // // add brushing 
-        // SCATTER_FRAME.call(d3.brush()                 
-        // .extent([[0,0], [FRAME_WIDTH, FRAME_HEIGHT]]) 
-        // .on("start brush", displayBrush)); 
-
-        // // // add zooming
-        // SCATTER_FRAME.call(zoom)
-        
-        // function zoomed() {
-        //     // update the X and Y scale domains based on the zoom event
-        //     X_SCALE.domain([MIN_X, MAX_X].map(d => d3.event.transform.applyX(Math.abs(parseFloat(d[x_attribute])))));
-        //     Y_SCALE.domain([MIN_Y, MAX_Y].map(d => d3.event.transform.applyY(Math.abs(parseFloat(d[y_attribute])))));
-    
-        //     // check if any points are selected
-        //     let selectedPoints = Points.filter(".selected");
-        //     if (selectedPoints.size()) {
-        //      // if there are selected points, zoom in on them
-        //      let xExtent = d3.extent(selectedPoints.data(), d => Math.abs(parseFloat(Math.abs(parseFloat(d[x_attribute])))));
-        //      let yExtent = d3.extent(selectedPoints.data(), d => Math.abs(parseFloat(Math.abs(parseFloat(d[y_attribute])))));
-        //      let xRange = [X_SCALE(xExtent[0]), X_SCALE(xExtent[1])];
-        //      let yRange = [Y_SCALE(yExtent[1]), Y_SCALE(yExtent[0])];
-        //      let xScaleFactor = SCATTER_WIDTH / (xRange[1] - xRange[0]);
-        //      let yScaleFactor = SCATTER_HEIGHT / (yRange[1] - yRange[0]);
-        //      let scaleFactor = Math.min(xScaleFactor, yScaleFactor, 10);
-        //      let xTranslate = -xRange[0] * scaleFactor + MARGINS.left;
-        //      let yTranslate = -yRange[0] * scaleFactor + MARGINS.top;
-        //      SCATTER_FRAME.transition()
-        //          .duration(500)
-        //          .call(zoom.transform, d3.zoomIdentity.scale(scaleFactor).translate(xTranslate, yTranslate));
-        //     }
-        // };
-
-        //     // shows the brushing
-        //     function displayBrush(event) {
-        //         selection = event.selection;
-        //         Points.classed("selected", function(d){ return isSelected(selection, (X_SCALE(Math.abs(parseFloat(Math.abs(parseFloat(d[x_attribute]))))) + 2 * MARGINS.left), ((Y_SCALE(Math.abs(parseFloat(d[y_attribute]))) + MARGINS.top)))})
-        //         // zoomed()
-
-        //     };
-
-           // when selecting a point to be brushed
-           function isSelected(coords, cx, cy) {
-             let x0 = coords[0][0],
-                 x1 = coords[1][0],
-                 y0 = coords[0][1],
-                 y1 = coords[1][1];
-             return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1;
-           };
-
-        
+        SCATTER_FRAME.append("g")
+                                    .attr("transform", "translate("  + (MARGINS.left + 25) + "," + 
+                                    (MARGINS.top) +  ")")
+                                    .call(d3.axisLeft(Y_SCALE).ticks(10))
+                                        .attr("font-size", "12px");
+                            
+       
         // plot bar 
         const X_SCALE_BAR = d3.scaleBand()
                                 .domain(['US', 'CA', 'MX', 'CR', 'AR', 'BO', 'BR', 'CL', 'PE', 'PY', 'EC', 'SV', 'GT', 'HN', 'NI', 'CO', 'PA', 
@@ -254,29 +184,6 @@ function render(x_attribute, y_attribute) {
             .style("text-anchor", "middle")
             .text("Number of Songs");
 
-        /*
-        let transposedData = d3.transpose([data]);
-        let k = Object.keys(data[0]);
-
-          transposedData.forEach(function(column, index) {
-            // Do something with the values in this column
-            console.log("Column " + index + ": " + column);
-
-        });
-        */
-
-
-            /*
-        data.forEach( function(d) {
-            // loop through available markets 
-            for (var i = 0; i < )
-            if(d['available_markets'] )
-            console.log(d['available_markets'])
-
-        })
-*/
-
-
         const COUNTER = d3.scaleOrdinal()
             .domain(['US', 'CA', 'MX', 'CR', 'AR', 'BO', 'BR', 'CL', 'PE', 'PY', 'EC', 'SV', 'GT', 'HN', 'NI', 'CO', 'PA', 
                     'ZA', 'DO', 'HU', 'PT', 'TR', 'CZ', 'ES', 'SK', 'SI', 'EE', 'GR', 'IL', 'LT'])
@@ -304,84 +211,35 @@ function render(x_attribute, y_attribute) {
 
 
         function handleMouseover(event, d) {
-            d3.select(this)
-        TOOLTIP.style("opacity", 1);
-         // position the tooltip and fill in information 
-         TOOLTIP.html("Track Name: " + d.track_name + "<br>Album: " + d.album_name + "<br>Release Year: " + d.album_release_year)
-         .style("left", (event.offsetX + 10) + "px") 
-         .style("top", (event.offsetY - 50) + "px"); 
-        
-         
-        d.countryCodes = ['US', 'CA', 'MX', 'CR', 'AR', 'BO', 'BR', 'CL', 'PE', 'PY', 'EC', 'SV', 'GT', 'HN', 'NI', 'CO', 'PA', 'ZA', 'DO', 'HU', 'PT', 'TR', 'CZ', 'ES', 'SK', 'SI', 'EE', 'GR', 'IL', 'LT']
-              .filter(function(cc) { return d[cc] == 1; });
-        console.log(d.countryCodes)
-        d.countryCodes.forEach(function(code) {
+            d3.select(this);
+            TOOLTIP.style("opacity", 1);
+            // position the tooltip and fill in information 
+            TOOLTIP.html("Track Name: " + d.track_name + "<br>Album: " + d.album_name + "<br>Release Year: " + d.album_release_year)
+            .style("left", (event.offsetX + 10) + "px") 
+            .style("top", (event.offsetY - 50) + "px"); 
             
-            d3.selectAll("#" + code + ".inactive")
-                .attr("class", "active");
-        });
-          
-
-        // for (let i = 0; i < COUNTER.domain().length; i++) {
-        //     mkt = COUNTER.domain()[i];
-        //     if(d[mkt] == 1) {
-        //         d3.selectAll('#' + mkt).attr("class", "active")
-        //     }
-        // }
+            
+            d.countryCodes = ['US', 'CA', 'MX', 'CR', 'AR', 'BO', 'BR', 'CL', 'PE', 'PY', 'EC', 'SV', 'GT', 'HN', 'NI', 'CO', 'PA', 'ZA', 'DO', 'HU', 'PT', 'TR', 'CZ', 'ES', 'SK', 'SI', 'EE', 'GR', 'IL', 'LT']
+                .filter(function(cc) { return d[cc] == 1; });
+            
+            d.countryCodes.forEach(function(code) {
+                
+                d3.selectAll("#" + code + ".inactive")
+                    .attr("class", "active");
+            });
 
         };
 
         function handleMousemove(event, d) {
 
-       
-
-        
-        /*
-            if(d.US == 1) {
-                d3.selectAll('#US').attr("class", "active")
-            } 
-            if(d.CA == 1) {
-                d3.selectAll('#CA').attr("class", "active")
-            }
-            if(d.MX == 1) {
-                d3.selectAll('#MX').attr("class", "active")
-            }
-            if(d.CR == 1) {
-                d3.selectAll('#CR').attr("class", "active")
-            }
-            if(d.AR == 1) {
-                d3.selectAll('#AR').attr("class", "active")
-            }
-            if(d.BO == 1) {
-                d3.selectAll('#BO').attr("class", "active")
-            }
-            if(d.CL == 1) {
-                d3.selectAll('#CL').attr("class", "active")
-            }
-            if(d.PE == 1) {
-                d3.selectAll('#PE').attr("class", "active")
-            }
-            if(d.BR == 1) {
-                d3.selectAll('#BR').attr("class", "active")
-            }
-            if(d.PY == 1) {
-                d3.selectAll('#PY').attr("class", "active")
-            }
-            */
-        
         };
 
 
         function handleMouseleave(event, d) {
-            d3.select(this)
-        TOOLTIP.style("opacity", 0); 
-        d3.selectAll(".active").attr("class", "inactive")
-        // for (let i = 0; i < COUNTER.domain().length; i++) {
-        //     mkt = COUNTER.domain()[i];
-        //     if(d[mkt] == 1) {
-        //         d3.selectAll('#' + mkt).attr("class", "inactive")
-        //     }
-        // }
+            d3.select(this);
+            TOOLTIP.style("opacity", 0); 
+            d3.selectAll(".active").attr("class", "inactive");
+        
             
         };
         
@@ -393,7 +251,7 @@ function render(x_attribute, y_attribute) {
             .on("mouseleave", handleMouseleave);
         
     });
-}
+};
 
 render("danceability", "loudness");
 
