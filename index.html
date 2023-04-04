@@ -13,10 +13,11 @@
 
 
 <body>
-
+    <!-- Webage Header -->
     <h1>Spotify Music Suggestions</h1>
 
     <div>
+        <!-- Motivation Section -->
         <h2>Motivation</h2>
         <p>Music preferences are subjective and with the magnitude of content on streaming platforms, finding new music can be a challenge. 
             For our project, we want to focus on exploring new music through similar songs using Spotify's API. 
@@ -29,6 +30,7 @@
     </div>
 
     <div>
+        <!-- Background Section -->
         <h2>Background</h2>
         TODO: Add link to report, demo video, link to data etc. here
         <h4>Data <a href="https://www.kaggle.com/datasets/a63964c0b3cc0a9b70b77c198678bb770f1ed41f6f6c6543f80ccee40d5ddaa1?resource=download">(Link)</a></h4>
@@ -46,12 +48,17 @@
     </div>
 
     <div>
+
+        <!-- Visualizaiton Section -->
         <h2>Visualization</h2>
         
+        <!-- div for the visualzations -->
         <div class="visualizations">
+            <!-- scatter graph div -->
             <div class="scatter">
-                
+                <!-- scatter title -->
                 <h4 id="vis1-title">Spotify Song Attributes</h4>
+                <!-- scatter legend -->
                 <div id="legend">
                     <p id="color-key-min">Min Album Release Date (1945)</p>
                     <img src="images/Greens.png" alt="color_bar" id="color-key"><p></p>
@@ -61,17 +68,20 @@
                 
             </div>
             <div>
+                <!-- bar graph title -->
                 <h4 id="vis1-title">Count of Songs in Top 30 Available Countries</h4>
-                
+                <!-- bar graph div -->
                 <div class="bar">
+                    <!-- bar legend -->
                     <div id="legend2">
-                        <p id="active-markets">Available in the Market (on hover)</p>
-                        <p id="inactive-markets">Not Available in the Market (on hover)</p>
+                        <p id="active-markets">Available in the Market (on hovering over scatter points)</p>
+                        <p id="inactive-markets">Not Available in the Market (on hover over scatter points)</p>
                     </div>
                     
                 </div>
             </div>
             <div>
+                <!-- Country codes data dictionary for bar graph x axis -->
                 <h5>Country Codes</h5>
                 <ul id="country-codes">
                     <li>US: United States</li>
@@ -114,9 +124,9 @@
         <div class = "click-point">
             
             
-            <!--dropdowns for x and y coordinates-->
+            <!--dropdowns for choosing x and y attributes-->
 
-            <!-- <form id ='show-pt'> -->
+            
             <div>
                 
                 <label>Select X Axes:</label>
@@ -146,14 +156,15 @@
                 <option value="Valence">Valence</option>
               </select>
             </div>
-            <!-- </form> -->
+            
             <div>
-                <!--create button-->
+                <!-- button for submitting with new x and y attributes-->
                 <button type="button" onClick = "changeAttributes()" id="create-pt">Create</button>
 
             </div>
             
     </div>
+    <!-- Acknowledgements section -->
     <div class="acknowledgements">
         <h2>Acknowledgements</h2>
          <div>
@@ -161,10 +172,7 @@
                 <li><a href="https://d3-graph-gallery.com/graph/interactivity_brush.html">Source 1</a> </li>
                 <li><a href="https://www.d3indepth.com/zoom-and-pan/">Source 2</a></li>
                 <li><a href="https://d3-graph-gallery.com/graph/interactivity_brush.html">Source 3</a></li>
-            </ul>
-            
-            
-            
+            </ul>  
          </div>
          
     </div>
