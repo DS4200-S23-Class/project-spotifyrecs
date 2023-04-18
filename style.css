@@ -105,3 +105,8 @@ padding: 5px;
   padding-bottom: 0px;
   border-bottom: 0px;
 }
+
+.point:hover {
+  fill: orange;
+  background-color: orange;
+}

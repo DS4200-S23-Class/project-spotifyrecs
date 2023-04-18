@@ -1,0 +1,109 @@
+WEBVTT
+
+1
+00:00:01.200 --> 00:00:05.640
+Hi everyone! My name is Krishanu, and today I’ll&nbsp;
+be giving a demo on how to use my group’s tool:&nbsp;&nbsp;
+
+2
+00:00:05.640 --> 00:00:07.560
+the Spotify Recommendation Visualization.
+
+3
+00:00:10.920 --> 00:00:14.460
+Our visualization has two linked,&nbsp;
+interactive visual encodings.
+
+4
+00:00:14.460 --> 00:00:18.000
+On the left there is a scatter plot of&nbsp;
+a various selection of songs available&nbsp;&nbsp;
+
+5
+00:00:18.000 --> 00:00:22.980
+on Spotify. The axes of the graph represent&nbsp;
+various song attributes. At the beginning,&nbsp;&nbsp;
+
+6
+00:00:22.980 --> 00:00:28.560
+the axes of the graph are set to loudness on&nbsp;
+the y-axis and danceability on the x-axis.
+
+7
+00:00:29.220 --> 00:00:33.420
+On the right, there is a bar chart displaying the&nbsp;
+distribution of available markets of the songs&nbsp;&nbsp;
+
+8
+00:00:33.420 --> 00:00:38.400
+shown in the scatter plot on the left. The bar&nbsp;
+chart shows that the top market is US followed&nbsp;&nbsp;
+
+9
+00:00:38.400 --> 00:00:44.580
+closely by Canada and Mexico. This means that all&nbsp;
+2000 songs in the sample are available in the US.
+
+10
+00:00:45.780 --> 00:00:48.900
+The user is able to change the axes&nbsp;
+of the scatterplot to create different&nbsp;&nbsp;
+
+11
+00:00:48.900 --> 00:00:52.380
+visualizations. For instance, if the&nbsp;
+user wanted to find songs with high&nbsp;&nbsp;
+
+12
+00:00:52.380 --> 00:00:57.420
+tempo and energy, they could select&nbsp;
+those as axes for the scatterplot.
+
+13
+00:01:01.860 --> 00:01:08.280
+When a user hovers over a&nbsp;
+point in the scatterplot,&nbsp;&nbsp;
+
+14
+00:01:10.140 --> 00:01:15.540
+a tooltip appears showing the user the track&nbsp;
+name, album name and release year of the song.&nbsp;&nbsp;
+
+15
+00:01:16.320 --> 00:01:23.280
+At the same time, the bars of the countries&nbsp;
+that specific song is available in,&nbsp;&nbsp;
+
+16
+00:01:23.280 --> 00:01:25.440
+light up green in the bar&nbsp;
+chart encoding on the right.
+
+17
+00:01:26.040 --> 00:01:32.460
+When a user hovers over a bar in the bar chart,&nbsp;
+the number of songs from the total sample of&nbsp;&nbsp;
+
+18
+00:01:32.460 --> 00:01:38.940
+2000 songs that are available in the country&nbsp;
+represented by the bar will appear via a tooltip.
+
+19
+00:01:40.740 --> 00:01:41.340
+For example,&nbsp;&nbsp;
+
+20
+00:01:45.240 --> 00:01:49.980
+there are 1920 songs available&nbsp;
+in Mexico in the sample.
+
+21
+00:01:50.820 --> 00:01:53.520
+Finally, the user is able to identify how old&nbsp;&nbsp;
+
+22
+00:01:53.520 --> 00:01:57.360
+songs are based on the lightness of the&nbsp;
+green of the points in the scatterplot.
+
